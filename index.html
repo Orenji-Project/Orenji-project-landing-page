@@ -1,39 +1,142 @@
 <!doctype html>
-<html lang="pt">
+<html lang="pt-PT">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="color-scheme" content="light dark">
-    <meta name="theme-color" content="#f59a23" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#1d1408" media="(prefers-color-scheme: dark)">
-    <meta name="msapplication-TileColor" content="#f59a23">
-    <title>Orenji Landing page</title>
-    <meta
-      name="description"
-      content="Indice simples das apps do projecto Orenji."
-    >
-    <link rel="icon" type="image/png" sizes="32x32" href="assets\Orange_fruit_wearing_straw_hat_202608051118.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets\Orange_fruit_wearing_straw_hat_202608051118.png">
+    <title>Orenji — uma vida mais simples</title>
+    <meta name="description" content="O Orenji é um ecossistema de aplicações simples para os teus treinos, estudos, refeições, foco e hábitos — uma vida mais organizada e saudável.">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff3e3">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1319">
+    <link rel="icon" type="image/png" href="assets/favicon-32.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="stylesheet" href="styles.css">
+
+    <!-- Partilha social -->
+    <link rel="canonical" href="https://orenji-project.github.io/Orenji-project-landing-page/">
+    <link rel="alternate" hreflang="pt" href="https://orenji-project.github.io/Orenji-project-landing-page/">
+    <link rel="alternate" hreflang="en" href="https://orenji-project.github.io/Orenji-project-landing-page/en/">
+    <link rel="alternate" hreflang="x-default" href="https://orenji-project.github.io/Orenji-project-landing-page/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Orenji Project">
+    <meta property="og:locale" content="pt_PT">
+    <meta property="og:alternate_locale" content="en_GB">
+    <meta property="og:url" content="https://orenji-project.github.io/Orenji-project-landing-page/">
+    <meta property="og:title" content="Orenji — uma vida mais simples">
+    <meta property="og:description" content="Aplicações simples para os teus treinos, estudos, refeições, foco e hábitos — fáceis como descascar uma laranja.">
+    <meta property="og:image" content="https://orenji-project.github.io/Orenji-project-landing-page/assets/og-cover.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Orenji — uma vida mais simples">
+    <meta name="twitter:description" content="Aplicações simples para os teus treinos, estudos, refeições, foco e hábitos.">
+    <meta name="twitter:image" content="https://orenji-project.github.io/Orenji-project-landing-page/assets/og-cover.jpg">
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "name": "Orenji Project",
+            "url": "https://orenji-project.github.io/",
+            "logo": "https://orenji-project.github.io/Orenji-project-landing-page/assets/orenji-logo.png"
+          },
+          {
+            "@type": "WebSite",
+            "name": "Orenji Project",
+            "url": "https://orenji-project.github.io/Orenji-project-landing-page/",
+            "inLanguage": "pt-PT"
+          }
+        ]
+      }
+    </script>
+    <link rel="stylesheet" href="styles.css?v=6">
+    <script src="script.js?v=3" defer></script>
   </head>
   <body>
-    <main>
-      <section class="hero" aria-labelledby="page-title">
-        <img class="hero-mark" src="assets\Orange_fruit_wearing_straw_hat_202608051118.png" alt="Laranja num trator" width="200" height="220">
+    <a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
+
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="Orenji, início">
+        <img src="assets/orenji-logo.webp" alt="" width="40" height="51">
+        <span><strong>Orenji</strong><small>uma vida mais simples</small></span>
+      </a>
+      <nav aria-label="Navegação principal">
+        <a href="#projeto">O projeto</a>
+        <a href="#ecossistema">O ecossistema</a>
+        <a href="#novidades">Novidades</a>
+        <a class="lang-switch" href="en/" lang="en" hreflang="en" aria-label="Read in English">EN</a>
+      </nav>
+    </header>
+
+    <main id="conteudo">
+      <section id="inicio" class="hero" aria-labelledby="page-title">
         <div class="hero-copy">
-          <h1 id="page-title">Esta página está fechada para preparação do terreno</h1><br><br>
-
-        <p>Para preparação concreta do <em>terreno</em>, esta pagina foi alterada para futuras alterações.</p><br><br>
-
-      <p> Para mais informações pode visitar as seguintes contas:</p>
-      <p>Instagram: @a_brandao20</p>
-      <p>linkedin: www.linkedin.com/in/alexandre-brandao20
-
-</p> 
+          <p class="eyebrow">Um ecossistema para o dia a dia</p>
+          <h1 id="page-title">Uma vida mais simples, ao natural.</h1>
+          <p class="hero-lead">Ferramentas simples e saudáveis para os teus treinos, estudos, refeições, foco e hábitos — fáceis como descascar uma laranja.</p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#ecossistema">Conhecer as aplicações</a>
+            <a class="ghost-button" href="#projeto">Ver o projeto</a>
+          </div>
         </div>
+        <img class="hero-banner" src="assets/orenji-banner.webp" alt="Orenji Project — logótipo com os ícones das aplicações Fitness, Study, Recipes, Focus e Habit" width="1600" height="800">
       </section>
 
-    <script src="script.js?v=20260621-links" defer></script>
+      <section id="projeto" class="content-section">
+        <p class="eyebrow">O projeto</p>
+        <h2>Pequenas ferramentas para grandes rotinas.</h2>
+        <p>O Orenji é um projeto de aplicações pensadas para tornar as tarefas do quotidiano mais claras, leves e fáceis de acompanhar. Cada aplicação cuida de uma rotina de cada vez — treinar, estudar, cozinhar, focar e cultivar hábitos.</p>
+      </section>
+
+      <section id="ecossistema" class="content-section apps-section" aria-labelledby="apps-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">O ecossistema</p>
+            <h2 id="apps-title">Escolhe o que te ajuda hoje.</h2>
+          </div>
+          <p>Toca num ícone para saber mais.</p>
+        </div>
+        <div class="apps-grid" data-app-list></div>
+      </section>
+
+      <section id="novidades" class="content-section news-section">
+        <p class="eyebrow">Novidades</p>
+        <h2>Estamos a preparar o próximo capítulo.</h2>
+        <p>Ainda não há novidades para anunciar — mas estão a chegar em breve. Fica atento.</p>
+      </section>
+    </main>
+
+    <footer>
+      <a class="footer-brand" href="#inicio">
+        <img src="assets/orenji-logo.webp" alt="" width="24" height="30">
+        <span>Orenji Project</span>
+      </a>
+      <div class="footer-links">
+        <a href="https://github.com/Orenji-Project" rel="noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/alexandre-brandao20" rel="noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"></path></svg>
+          LinkedIn
+        </a>
+      </div>
+      <span>Feito para uma vida mais simples.</span>
+    </footer>
+
+    <dialog class="modal" data-modal aria-labelledby="modal-title" aria-describedby="modal-description">
+      <div class="modal-card">
+        <button class="modal-close" data-modal-close aria-label="Fechar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+        </button>
+        <img class="modal-icon" data-modal-icon src="" alt="">
+        <strong data-modal-title id="modal-title"></strong>
+        <p data-modal-tagline></p>
+        <p id="modal-description" data-modal-description></p>
+        <span class="status-chip" data-modal-chip></span>
+        <a class="primary-button modal-link" data-modal-link target="_blank" rel="noreferrer" hidden>Abrir app</a>
+      </div>
+    </dialog>
   </body>
 </html>

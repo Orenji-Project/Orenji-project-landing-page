@@ -1,146 +1,176 @@
-const apps = [
+/* ============================================================
+   Orenji Landing — dados das apps + ecossistema (tiles e modal)
+   Status por app: "soon" (chip "Em breve") ou "live" (CTA real).
+   ============================================================ */
+
+const APPS = [
   {
+    id: "fitness",
     name: "Orenji Fitness",
-    tagline: "Treinos e progresso",
-    bannerTitle: "Fitness",
-    logo: "assets/fitness-logo.png",
+    icon: "assets/fitness-logo.webp",
+    accent: "#ff7a00",
+    status: "soon",
     url: "https://orenji-project.github.io/orenji-fitness-app/",
-    accent: "#f59a23",
-    accentSoft: "#fff1df",
-    description:
-      "App para organizar treinos, acompanhar progresso semanal, consultar catalogo de exercicios, registar historico e ajustar preferencias visuais.",
+    tagline: { pt: "Movimento e bem-estar", en: "Movement and well-being" },
+    description: {
+      pt: "Uma aplicação para organizar os treinos e acompanhar a evolução com mais clareza.",
+      en: "An app to organize workouts and track progress with more clarity.",
+    },
   },
   {
+    id: "study",
     name: "Orenji Study",
-    tagline: "Estudo organizado",
-    bannerTitle: "Study",
-    logo: "assets/study-logo.png",
+    icon: "assets/study-logo.webp",
+    accent: "#3b82f6",
+    status: "soon",
     url: "https://orenji-project.github.io/Orenji-Study/",
-    accent: "#6f9447",
-    accentSoft: "#eef6e8",
-    description:
-      "Espaco de estudo com dashboard, horario, notas, tarefas, calendario e configuracoes para manter a rotina academica mais clara.",
+    tagline: { pt: "Estudo organizado", en: "Organized study" },
+    description: {
+      pt: "Um espaço para manter os horários, notas e tarefas de estudo no mesmo lugar.",
+      en: "A space to keep study schedules, notes and tasks in one place.",
+    },
   },
   {
+    id: "recipes",
     name: "Orenji Recipes",
-    tagline: "Receitas e cozinha",
-    bannerTitle: "Recipes",
-    logo: "assets/recipes-logo.png",
+    icon: "assets/recipes-logo.webp",
+    accent: "#f59e0b",
+    status: "soon",
     url: "https://orenji-project.github.io/Orenji-Recipes/",
-    accent: "#e77923",
-    accentSoft: "#fff0e4",
-    description:
-      "App de receitas com pesquisa, favoritos, detalhe de receita e modo cozinha para seguir preparacoes sem perder o ritmo.",
+    tagline: { pt: "Receitas e cozinha", en: "Recipes and cooking" },
+    description: {
+      pt: "Receitas e ferramentas para tornar a preparação das refeições mais simples.",
+      en: "Recipes and tools to make everyday cooking simpler.",
+    },
   },
   {
+    id: "focus",
     name: "Orenji Focus",
-    tagline: "Foco e tempo",
-    bannerTitle: "Focus",
-    logo: "assets/focus-logo.png",
+    icon: "assets/focus-logo.webp",
+    accent: "#43836a",
+    status: "soon",
     url: "https://orenji-project.github.io/Orenji-Focus/",
-    accent: "#4f8f69",
-    accentSoft: "#eaf6ef",
-    description:
-      "Ferramenta de produtividade com timer, metodos de foco, sessoes, tarefas e configuracoes guardadas localmente.",
+    tagline: { pt: "Foco e tempo", en: "Focus and time" },
+    description: {
+      pt: "Uma forma mais tranquila de organizar tarefas e criar sessões de foco.",
+      en: "A calmer way to organize tasks and create focus sessions.",
+    },
   },
   {
+    id: "habit",
     name: "Orenji Habit",
-    tagline: "Habitos diarios",
-    bannerTitle: "Habit",
-    logo: "assets/habit-logo.png",
+    icon: "assets/habit-logo.webp",
+    accent: "#a855f7",
+    status: "soon",
     url: "https://orenji-project.github.io/Orenji-Habit/",
-    accent: "#d9822b",
-    accentSoft: "#fff3e6",
-    description:
-      "App para acompanhar habitos, streaks, consistencia diaria, rotinas pessoais e pequenas vitorias ao longo da semana.",
+    tagline: { pt: "Hábitos diários", en: "Daily habits" },
+    description: {
+      pt: "Pequenos hábitos acompanhados de forma simples, consistente e pessoal.",
+      en: "Small habits tracked in a simple, consistent and personal way.",
+    },
   },
 ];
 
-const appList = document.querySelector("[data-app-list]");
-const template = document.querySelector("#app-card-template");
+const COPY = {
+  pt: {
+    soon: "Em breve",
+    open: "Abrir app",
+    close: "Fechar",
+  },
+  en: {
+    soon: "Coming soon",
+    open: "Open app",
+    close: "Close",
+  },
+};
 
-loadApps();
+const lang = (document.documentElement.getAttribute("lang") || "pt")
+  .toLowerCase()
+  .startsWith("en") ? "en" : "pt";
+const T = COPY[lang];
 
-async function loadApps() {
-  renderApps(await getAppsWithConfiguredLinks());
+/* Resolve assets independentemente da página (PT na raiz, EN em /en/). */
+const scriptUrl = new URL(document.currentScript?.src || "script.js", location.href);
+const pageBase = scriptUrl.href.replace(/[^/]*$/, "");
+const resolveAsset = (path) => new URL(path, pageBase).href;
+
+const appGrid = document.querySelector("[data-app-list]");
+const modal = document.querySelector("dialog[data-modal]");
+const modalCard = modal.querySelector(".modal-card");
+const modalIcon = modal.querySelector("[data-modal-icon]");
+const modalTitle = modal.querySelector("[data-modal-title]");
+const modalTagline = modal.querySelector("[data-modal-tagline]");
+const modalDescription = modal.querySelector("[data-modal-description]");
+const modalChip = modal.querySelector("[data-modal-chip]");
+const modalLink = modal.querySelector("[data-modal-link]");
+const modalClose = modal.querySelector("[data-modal-close]");
+
+function buildTile(app, index) {
+  const tile = document.createElement("button");
+  tile.type = "button";
+  tile.className = "app-tile";
+  tile.style.setProperty("--tile-accent", app.accent);
+  tile.setAttribute("aria-haspopup", "dialog");
+  tile.dataset.index = String(index);
+
+  const iconBox = document.createElement("span");
+  iconBox.className = "tile-icon";
+  const icon = document.createElement("img");
+  icon.src = resolveAsset(app.icon);
+  icon.alt = "";
+  icon.width = 96;
+  icon.height = 96;
+  icon.loading = "lazy";
+  icon.decoding = "async";
+  iconBox.append(icon);
+
+  const label = document.createElement("strong");
+  label.textContent = app.name;
+
+  tile.append(iconBox, label);
+  return tile;
 }
 
-async function getAppsWithConfiguredLinks() {
-  try {
-    const response = await fetch(`links.json?v=${Date.now()}`, { cache: "no-store" });
+function openModal(app) {
+  modalCard.style.setProperty("--tile-accent", app.accent);
+  modalIcon.src = resolveAsset(app.icon);
+  modalIcon.alt = "";
+  modalTitle.textContent = app.name;
+  modalTagline.textContent = app.tagline[lang];
+  modalDescription.textContent = app.description[lang];
 
-    if (!response.ok) {
-      return apps;
-    }
+  const isSoon = app.status !== "live";
+  modalChip.textContent = T.soon;
+  modalChip.hidden = !isSoon;
+  modalLink.textContent = `${T.open} →`;
+  modalLink.hidden = isSoon || !app.url;
+  if (!isSoon && app.url) modalLink.href = app.url;
 
-    const data = await response.json();
-    const urlsByName = new Map(
-      (data.links ?? [])
-        .filter(({ name, url }) => typeof name === "string" && typeof url === "string" && url)
-        .map(({ name, url }) => [name, url])
-    );
-
-    if (!urlsByName.size) {
-      return apps;
-    }
-
-    return apps.map((app) => ({
-      ...app,
-      url: urlsByName.get(app.name) ?? app.url,
-    }));
-  } catch (error) {
-    console.warn("Nao foi possivel carregar links.json.", error);
-    return apps;
-  }
+  lastFocusedTile = document.activeElement;
+  document.body.style.overflow = "hidden";
+  modal.showModal();
 }
 
-function renderApps(appsToRender) {
-  appList.replaceChildren(...appsToRender.map(createCard));
-}
+let lastFocusedTile = null;
 
-function createCard(app, index) {
-  const fragment = template.content.cloneNode(true);
-  const card = fragment.querySelector(".app-card");
-  const toggle = fragment.querySelector("[data-card-toggle]");
-  const banner = fragment.querySelector("[data-banner]");
-  const logo = fragment.querySelector("[data-logo]");
-  const name = fragment.querySelector("[data-name]");
-  const tagline = fragment.querySelector("[data-tagline]");
-  const bannerTitle = fragment.querySelector("[data-banner-title]");
-  const description = fragment.querySelector("[data-description]");
-  const link = fragment.querySelector("[data-url]");
-  const details = fragment.querySelector("[data-card-details]");
-  const detailsId = `app-details-${index}`;
+appGrid.append(...APPS.map(buildTile));
 
-  card.dataset.expanded = "false";
-  banner.style.setProperty("--accent", app.accent);
-  banner.style.setProperty("--accent-soft", app.accentSoft);
-  logo.src = app.logo;
-  logo.alt = `${app.name} logo`;
-  name.textContent = app.name;
-  tagline.textContent = app.tagline;
-  bannerTitle.textContent = app.bannerTitle;
-  description.textContent = app.description;
-  link.href = app.url;
-  details.id = detailsId;
-  toggle.setAttribute("aria-expanded", "false");
-  toggle.setAttribute("aria-controls", detailsId);
-  toggle.setAttribute("aria-label", `Ver detalhes de ${app.name}`);
+modalClose.setAttribute("aria-label", T.close);
 
-  toggle.addEventListener("click", () => {
-    const expanded = card.dataset.expanded === "true";
-    const nextExpanded = !expanded;
+appGrid.addEventListener("click", (event) => {
+  const tile = event.target.closest(".app-tile");
+  if (tile) openModal(APPS[Number(tile.dataset.index)]);
+});
 
-    if (nextExpanded) {
-      appList.querySelectorAll(".app-card").forEach((otherCard) => {
-        otherCard.dataset.expanded = "false";
-        otherCard.querySelector("[data-card-toggle]")?.setAttribute("aria-expanded", "false");
-      });
-    }
+modalClose.addEventListener("click", () => modal.close());
 
-    card.dataset.expanded = String(nextExpanded);
-    toggle.setAttribute("aria-expanded", String(nextExpanded));
-  });
+/* Clicar no fundo do diálogo (fora do cartão) fecha também. */
+modal.addEventListener("click", (event) => {
+  if (event.target === modal) modal.close();
+});
 
-  return fragment;
-}
+modal.addEventListener("close", () => {
+  document.body.style.overflow = "";
+  lastFocusedTile?.focus();
+  lastFocusedTile = null;
+});
