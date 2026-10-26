@@ -116,6 +116,13 @@
 html {
   min-height: 100%;
   background: var(--page);
+  scroll-padding-top: 6.5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -681,6 +688,10 @@ footer a:hover {
 
 /* ---------- Responsivo ---------- */
 @media (max-width: 560px) {
+  html {
+    scroll-padding-top: 8rem;
+  }
+
   main {
     width: min(100% - 1.2rem, 1120px);
   }
