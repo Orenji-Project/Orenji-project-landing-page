@@ -1,39 +1,13 @@
 <!doctype html>
-<html lang="pt">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="color-scheme" content="light dark">
-    <meta name="theme-color" content="#f59a23" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#1d1408" media="(prefers-color-scheme: dark)">
-    <meta name="msapplication-TileColor" content="#f59a23">
-    <title>Orenji Landing page</title>
-    <meta
-      name="description"
-      content="Indice simples das apps do projecto Orenji."
-    >
-    <link rel="icon" type="image/png" sizes="32x32" href="assets\Orange_fruit_wearing_straw_hat_202608051118.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets\Orange_fruit_wearing_straw_hat_202608051118.png">
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <main>
-      <section class="hero" aria-labelledby="page-title">
-        <img class="hero-mark" src="assets\Orange_fruit_wearing_straw_hat_202608051118.png" alt="Laranja num trator" width="200" height="220">
-        <div class="hero-copy">
-          <h1 id="page-title">Esta página está fechada para preparação do terreno</h1><br><br>
-
-        <p>Para preparação concreta do <em>terreno</em>, esta pagina foi alterada para futuras alterações.</p><br><br>
-
-      <p> Para mais informações pode visitar as seguintes contas:</p>
-      <p>Instagram: @a_brandao20</p>
-      <p>linkedin: www.linkedin.com/in/alexandre-brandao20
-
-</p> 
-        </div>
-      </section>
-
-    <script src="script.js?v=20260621-links" defer></script>
-  </body>
-</html>
+<html lang="pt-PT">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f59a23"><title>Orenji — uma vida mais simples</title><meta name="description" content="Orenji: aplicações simples para uma vida mais organizada, saudável e equilibrada."><link rel="icon" type="image/png" href="assets/favicon-32.png"><link rel="manifest" href="site.webmanifest"><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="site-header"><a class="brand" href="#inicio" aria-label="Orenji, início"><img src="assets/orenji-mark-transparent.png" alt=""><span><strong>Orenji</strong><small>uma vida mais simples</small></span></a><nav aria-label="Navegação principal"><a href="#projeto">O projeto</a><a href="#ecossistema">O ecossistema</a><a href="#novidades">Novidades</a></nav></header>
+<main>
+<section id="inicio" class="hero" aria-labelledby="page-title"><div class="hero-copy"><p class="eyebrow">Um ecossistema para o dia a dia</p><h1 id="page-title">A simpler life, naturally.</h1><p class="hero-lead">Uma vida mais simples e saudável — fácil como descascar uma laranja.</p><a class="primary-button" href="#ecossistema">Conhecer as aplicações</a></div><img class="hero-mark" src="assets/Orange_fruit_wearing_straw_hat_202608051118.png" alt="Laranja Orenji" width="200" height="220"></section>
+<section id="projeto" class="content-section"><p class="eyebrow">O projeto</p><h2>Pequenas ferramentas para grandes rotinas.</h2><p>Orenji é um projeto de aplicações pensadas para tornar tarefas do quotidiano mais claras, leves e fáceis de acompanhar.</p></section>
+<section id="ecossistema" class="content-section apps-section" aria-labelledby="apps-title"><div class="section-heading"><div><p class="eyebrow">O ecossistema</p><h2 id="apps-title">Escolhe o que te ajuda hoje.</h2></div><p>Explora cada aplicação. Abre um card para saber mais.</p></div><div class="apps-grid" data-app-list></div></section>
+<section id="novidades" class="content-section news-section"><p class="eyebrow">Novidades</p><h2>Estamos a preparar o próximo capítulo.</h2><p>Ainda não há novidades para anunciar, mas elas chegam em breve.</p></section>
+</main><footer><span>Orenji Project</span><span>Feito para uma vida mais simples.</span></footer>
+<template id="app-card-template"><article class="app-card" data-expanded="false"><button class="card-toggle" type="button" data-card-toggle><span class="banner" data-banner><span><img data-logo alt=""></span><strong data-banner-title></strong></span><span class="card-summary"><span><strong data-name></strong><small data-tagline></small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></span></button><div class="card-details" data-card-details><div class="details-inner"><p data-description></p><a class="app-link" data-url target="_blank" rel="noreferrer">Brevemente</a></div></div></article></template>
+<script src="script.js?v=20261026" defer></script></body></html>
