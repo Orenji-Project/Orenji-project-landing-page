@@ -89,6 +89,11 @@ const lang = (document.documentElement.getAttribute("lang") || "pt")
   .startsWith("en") ? "en" : "pt";
 const T = COPY[lang];
 
+/* Resolve assets independentemente da página (PT na raiz, EN em /en/). */
+const scriptUrl = new URL(document.currentScript?.src || "script.js", location.href);
+const pageBase = scriptUrl.href.replace(/[^/]*$/, "");
+const resolveAsset = (path) => new URL(path, pageBase).href;
+
 const appGrid = document.querySelector("[data-app-list]");
 const modal = document.querySelector("dialog[data-modal]");
 const modalCard = modal.querySelector(".modal-card");
@@ -111,7 +116,7 @@ function buildTile(app, index) {
   const iconBox = document.createElement("span");
   iconBox.className = "tile-icon";
   const icon = document.createElement("img");
-  icon.src = app.icon;
+  icon.src = resolveAsset(app.icon);
   icon.alt = "";
   icon.width = 96;
   icon.height = 96;
@@ -128,7 +133,7 @@ function buildTile(app, index) {
 
 function openModal(app) {
   modalCard.style.setProperty("--tile-accent", app.accent);
-  modalIcon.src = app.icon;
+  modalIcon.src = resolveAsset(app.icon);
   modalIcon.alt = "";
   modalTitle.textContent = app.name;
   modalTagline.textContent = app.tagline[lang];

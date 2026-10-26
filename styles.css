@@ -276,11 +276,13 @@ main {
 
 .content-section {
   padding: clamp(2rem, 6vw, 4rem) 0;
+  text-align: center;
 }
 
 .content-section > p:not(.eyebrow),
 .section-heading > p {
   max-width: 42rem;
+  margin-inline: auto;
   color: var(--muted);
   font-size: 1.02rem;
   line-height: 1.7;
@@ -288,7 +290,7 @@ main {
 
 .content-section h2 {
   max-width: 20ch;
-  margin: 0 0 0.9rem;
+  margin: 0 auto 0.9rem;
   font-size: clamp(1.7rem, 4vw, 2.6rem);
   font-weight: 700;
   line-height: 1.1;
@@ -304,16 +306,14 @@ main {
 }
 
 .section-heading {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 2rem;
+  display: grid;
+  justify-items: center;
+  gap: 0.4rem;
   margin-bottom: 1.4rem;
 }
 
 .section-heading > p {
-  margin: 0 0 0.5rem;
-  text-align: right;
+  margin: 0;
 }
 
 /* ---------- Hero ---------- */
@@ -670,15 +670,6 @@ footer a:hover {
     margin-left: 0;
     overflow-x: auto;
     width: 100%;
-  }
-
-  .section-heading {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .section-heading > p {
-    text-align: left;
   }
 
   .apps-grid {
